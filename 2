@@ -1,0 +1,49 @@
+ 
+
+int[] NewList = { 1, 4, 5, 7, 3, 5, 1, 4, 7, 9, 0, 9 }; 
+
+ 
+
+int a = 0; 
+
+ 
+
+Console.WriteLine("Початковий масив: "); 
+
+ 
+
+foreach (var i in NewList) 
+
+{ 
+
+    Console.WriteLine(i); 
+
+} 
+
+ 
+
+for (int i = 0; i < 12; i++) 
+
+{ 
+
+    int j; 
+
+    for (j = 0; j < i; j++) 
+
+        if (NewList[i] == NewList[j]) 
+
+            break; 
+
+ 
+
+    if (i == j) 
+
+        a++; 
+
+ 
+
+} 
+
+Console.WriteLine(" "); 
+
+Console.WriteLine("У даному масиві " +a+ " унікальних елементів"); 
