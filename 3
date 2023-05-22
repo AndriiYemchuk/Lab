@@ -1,0 +1,85 @@
+using System;
+
+using System.Collections.Generic;
+
+class Program
+
+{
+
+static void Main(string[] args)
+
+{
+
+Console.WriteLine("Введіть перше слово: ");
+
+string word1 = Console.ReadLine().ToLower();
+
+Console.WriteLine("Введіть друге слово: ");
+
+string word2 = Console.ReadLine().ToLower();
+
+bool canFormWordWithRepetition = CanFormWord(word1, word2, true);
+
+bool canFormWordWithoutRepetition = CanFormWord(word1, word2, false);
+
+Console.WriteLine("Враховуючи повторення літер:");
+
+Console.WriteLine(canFormWordWithRepetition ? "Можна сформувати друге слово з літер першого слова." : "Не можна сформувати друге слово з літер першого слова.");
+
+Console.WriteLine("Не враховуючи повторення літер:");
+
+Console.WriteLine(canFormWordWithoutRepetition ? "Можна сформувати друге слово з літер першого слова." : "Не можна сформувати друге слово з літер першого слова.");
+
+}
+
+static bool CanFormWord(string word1, string word2, bool allowRepetition)
+
+{
+
+if (word1.Length < word2.Length)
+
+return false;
+
+Dictionary<char, int> charCounts = new Dictionary<char, int>();
+
+foreach (char c in word1)
+
+{
+
+if (charCounts.ContainsKey(c))
+
+{
+
+if (allowRepetition)
+
+charCounts[c]++;
+
+}
+
+else
+
+{
+
+charCounts[c] = 1;
+
+}
+
+}
+
+foreach (char c in word2)
+
+{
+
+if (!charCounts.ContainsKey(c) || charCounts[c] == 0)
+
+return false;
+
+if (!allowRepetition)
+
+charCounts[c]--;
+
+}
+
+return true;
+
+}
